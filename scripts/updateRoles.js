@@ -2,12 +2,12 @@ import pool from '../src/config/db.js';
 
 async function updateAdminPassword() {
   try {
-    await pool.query('USE military_assets'); // select the database first
+    // await pool.query(`USE ${process.env.DB_NAME}`); // select the database first
 
     const sql = `
       UPDATE users
-      SET password_hash = '$2b$10$ux06wt4A/Nk1E7GJygr7eu47Z0IgCOkJXzfbfsNp4DLZTx9LiGwHC'
-      WHERE username = 'log_alpha';
+      SET password_hash = '$2b$10$sSd8.et0rPTFxnlsd3tSdelg4nSBh83BuWGRyvMw7KF7Oy7wtJDaq'
+      WHERE username = 'admin';
     `;
     
     const [result] = await pool.query(sql);
