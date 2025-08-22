@@ -15,10 +15,18 @@ import auditRoutes from './routes/auditRoutes.js';
 
 dotenv.config();
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: "*",   // or specify your React app URL when deployed
+  methods: "GET,POST,PUT,DELETE",
+  credentials: true
+}));
 app.use(express.json());
 app.use(morgan('dev'));
 app.locals.db = pool;
+
+app.get("/", (req, res) => {
+  res.send("✅ Backend is running on Render!");
+});
 
 
 app.get('/test-db', async (req, res) => {
